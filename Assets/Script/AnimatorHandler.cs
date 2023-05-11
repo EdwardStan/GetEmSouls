@@ -6,9 +6,10 @@ namespace SE
 {
     public class AnimatorHandler : MonoBehaviour
     {
+        PlayerManager playerManager;
         public Animator anim;
-        public InputHandler inputHandler;
-        public PlayerLocomotion playerLocomotion;
+        InputHandler inputHandler;
+        PlayerLocomotion playerLocomotion;
 
         int vertical;
         int horizontal;
@@ -16,6 +17,7 @@ namespace SE
 
         public void Initialize()
         {
+            playerManager = GetComponentInParent<PlayerManager>();
             playerLocomotion = GetComponentInParent<PlayerLocomotion>();
             inputHandler = GetComponentInParent<InputHandler>();
             anim = GetComponent<Animator>();
@@ -88,6 +90,7 @@ namespace SE
 
         public void PlayTargetAnimation(string targetAnim, bool isInteracting)
         {
+            Debug.Log("Animation " + targetAnim + " is playing");
             anim.applyRootMotion = isInteracting;
             anim.SetBool("isInteracting", isInteracting);
             anim.CrossFade(targetAnim, 0.2f);
@@ -105,7 +108,7 @@ namespace SE
 
         private void OnAnimatorMove()
         {
-            if (inputHandler.isInteracting == false) { return; }
+            if (playerManager.isInteracting == false) { return; }
 
             float delta = Time.deltaTime;
             playerLocomotion.rigidbody.drag = 0;
