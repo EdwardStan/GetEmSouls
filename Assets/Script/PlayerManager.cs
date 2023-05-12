@@ -25,7 +25,7 @@ namespace SE
 
         private void Awake()
         {
-            cameraHandler = CameraHandler.instance;
+            cameraHandler = FindObjectOfType<CameraHandler>();
         }
 
         // Start is called before the first frame update
@@ -65,7 +65,8 @@ namespace SE
         {
             inputHandler.rollFlag = false;
             inputHandler.sprintFlag = false;
-            isSprinting = inputHandler.b_Input;
+            inputHandler.rb_Input = false;
+            inputHandler.rt_Input = false;
 
             if (isInAir)
             {

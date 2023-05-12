@@ -96,7 +96,7 @@ namespace SE
 
             float speed = movementSpeed;
 
-            if (inputHandler.sprintFlag)
+            if (inputHandler.sprintFlag && inputHandler.moveAmount > 0.5f)
             {
                 speed = sprintSpeed;
                 playerManager.isSprinting = true;
@@ -104,8 +104,17 @@ namespace SE
             }
             else
             {
-
-                moveDirection *= speed;
+                if(inputHandler.moveAmount < 0.5)
+                {
+                    moveDirection *= movementSpeed;
+                    playerManager.isSprinting = false;
+                }
+                else
+                {
+                    moveDirection *= speed;
+                    playerManager.isSprinting = false;
+                }
+            
             }
 
             Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
@@ -193,7 +202,7 @@ namespace SE
                     }
                     else
                     {
-                        animatorHandler.PlayTargetAnimation("Locomotion", false);
+                        animatorHandler.PlayTargetAnimation("Empty", false);
                         inAirTImer= 0;
                     }
 
@@ -219,6 +228,15 @@ namespace SE
                     rigidbody.velocity = vel * (movementSpeed /2);
                     playerManager.isInAir = true;
                 }
+            }
+
+            if(playerManager.isInteracting || inputHandler.moveAmount > 0)
+            {
+                myTransform.position = Vector3.Lerp(myTransform.position,targetPosition,Time.deltaTime/0.1f);
+            }
+            else
+            {
+            myTransform.position = targetPosition;
             }
 
 

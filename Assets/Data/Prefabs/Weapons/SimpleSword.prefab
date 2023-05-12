@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 75484553426992960}
   - component: {fileID: 75484553430361350}
   - component: {fileID: 75484553429313908}
+  - component: {fileID: 8331137366837717532}
+  - component: {fileID: 8213835921677749794}
   m_Layer: 0
   m_Name: SimpleSword
   m_TagString: Untagged
@@ -83,6 +85,31 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8331137366837717532
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75484553427223738}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.5067143, y: 96.57015, z: 28.2045}
+  m_Center: {x: 0.0002062885, y: 66.50004, z: -0.000012407494}
+--- !u!114 &8213835921677749794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75484553427223738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81ddc9585332abc48a6aa1e567b518ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3497271404032473078
 GameObject:
   m_ObjectHideFlags: 0
