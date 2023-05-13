@@ -15,15 +15,21 @@ namespace SE
         public bool b_Input;
         public bool rb_Input;
         public bool rt_Input;
+        public bool d_Pad_Up;
+        public bool d_Pad_Down;
+        public bool d_Pad_Left;
+        public bool d_Pad_Right;
 
         public bool rollFlag;
         public bool sprintFlag;
+        public bool comboFlag;
         public float rollInputTimer;
   
 
         PlayerControls inputActions;
         PlayerAttacker playerAttacker;
         PlayerInventory playerInventory;
+        PlayerManager playerManager;
 
 
         Vector2 movementInput;
@@ -33,6 +39,7 @@ namespace SE
         {
             playerAttacker = GetComponent<PlayerAttacker>();
             playerInventory= GetComponent<PlayerInventory>();
+            playerManager= GetComponent<PlayerManager>();
         }
 
         public void OnEnable()
@@ -57,6 +64,7 @@ namespace SE
             MoveInput(delta);
             HandleRollingInput(delta);
             HandleAttackInput(delta);
+            HandleQuickSlotsInput();
         }
 
         private void MoveInput(float delta)
@@ -96,11 +104,51 @@ namespace SE
 
             if (rb_Input)
             {
-                playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
+                if (playerManager.canDoCombo)
+                {
+                    comboFlag= true;
+                    playerAttacker.HandleWeaponCombo(playerInventory.rightWeapon);
+                    comboFlag= false;
+                }
+                else
+                {
+                    if (playerManager.isInteracting) { return; }
+                    if(playerManager.canDoCombo) { return; }
+                    playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
+                }
+
             }
             if (rt_Input)
             {
-                playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
+                if (playerManager.canDoCombo)
+                {
+                    comboFlag = true;
+                    playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
+                    comboFlag = false;
+                }
+                else
+                {
+                    if (playerManager.isInteracting) { return; }
+                    if (playerManager.canDoCombo) { return; }
+                    playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
+                }
+            }
+        }
+
+        private void HandleQuickSlotsInput()
+        {
+            inputActions.DPad.DPadRight.performed += i => d_Pad_Right = true;
+            inputActions.DPad.DPadLeft.performed += i => d_Pad_Left = true;
+
+            if (d_Pad_Right)
+            {
+                Debug.Log("Change Right Weapon");
+                playerInventory.ChangeRightWeapon();
+            }
+            else if (d_Pad_Left)
+            {
+                Debug.Log("Change Left Weapon");
+                playerInventory.ChangeLeftWeapon();
             }
         }
     }

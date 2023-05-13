@@ -11,10 +11,14 @@ namespace SE
         WeaponHolderSlot rightHandSlot;
 
         DamageCollider leftHandDamagecollider;
-        DamageCollider rightHandDamagecollider; 
+        DamageCollider rightHandDamagecollider;
+
+        Animator animator;
 
         private void Awake()
         {
+            animator = GetComponent<Animator>();
+
             WeaponHolderSlot[] weaponHolderSlots = GetComponentsInChildren<WeaponHolderSlot>();
 
             foreach(WeaponHolderSlot weaponSlot in weaponHolderSlots)
@@ -38,11 +42,29 @@ namespace SE
             {
                 leftHandSlot.LoadWeaponModel(weaponitem);
                 LoadLeftWeaponCollider();
+
+                if(weaponitem != null)
+                {
+                    animator.CrossFade(weaponitem.left_Hand_Idle, 0.2f);
+                }
+                else
+                {
+                    animator.CrossFade("Left Arm Empty", 0.2f);
+                }
             }
             else
             {
                 rightHandSlot.LoadWeaponModel(weaponitem);
                 LoadRightWeaponCollider();
+
+                if (weaponitem != null)
+                {
+                    animator.CrossFade(weaponitem.right_Hand_Idle, 0.2f);
+                }
+                else
+                {
+                    animator.CrossFade("Right Arm Empty", 0.2f);
+                }
             }
 
         }

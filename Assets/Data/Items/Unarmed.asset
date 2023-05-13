@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dfbfbf7cf22d23849a23969ef56ad75f, type: 3}
-  m_Name: Sword
+  m_Name: Unarmed
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 0}
-  itemName: Sword
-  modelPrefab: {fileID: 5858364935557156730, guid: 69bc675dcf51d274283040929a088373,
+  itemName: 
+  modelPrefab: {fileID: 5162529844472485643, guid: 6ac5e16192e0d2544a3c4d9c7414f4ab,
     type: 3}
-  isUnarmed: 0
-  right_Hand_Idle: Right_Arm_Idle_01
-  left_Hand_Idle: Left_Arm_idle_01
-  OH_Light_Attack_1: OH_LightAttack_01
-  OH_Heavy_Attack_1: OH_HeavyAttack_01
-  OH_Light_Attack_2: OH_LightAttack_02
+  isUnarmed: 1
+  right_Hand_Idle: Right Arm Empty
+  left_Hand_Idle: Left Arm Empty
+  OH_Light_Attack_1: 
+  OH_Heavy_Attack_1: 
+  OH_Light_Attack_2: 
   OH_Heavy_Attack_2: 

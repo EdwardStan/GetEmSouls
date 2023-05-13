@@ -106,6 +106,18 @@ namespace SE
             canRotate = false;
         }
 
+        public void EnableCombo()
+        {
+            Debug.Log("Combo Enabled");
+            anim.SetBool("canDoCombo", true);
+        }
+
+        public void DisableCombo() 
+        {
+            Debug.Log("Combo Disabled");
+            anim.SetBool("canDoCombo", false);
+        }
+
         private void OnAnimatorMove()
         {
             if (playerManager.isInteracting == false) { return; }

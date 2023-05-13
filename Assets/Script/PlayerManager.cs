@@ -17,6 +17,7 @@ namespace SE
         public bool isSprinting;
         public bool isInAir;
         public bool isGrounded;
+        public bool canDoCombo;
 
         [Space]
 
@@ -40,6 +41,7 @@ namespace SE
         void Update()
         {
             isInteracting = anim.GetBool("isInteracting");
+            canDoCombo = anim.GetBool("canDoCombo");
 
             float delta = Time.deltaTime;
 
@@ -67,6 +69,10 @@ namespace SE
             inputHandler.sprintFlag = false;
             inputHandler.rb_Input = false;
             inputHandler.rt_Input = false;
+            inputHandler.d_Pad_Left= false;
+            inputHandler.d_Pad_Right= false;
+            inputHandler.d_Pad_Up= false;
+            inputHandler.d_Pad_Down= false;
 
             if (isInAir)
             {

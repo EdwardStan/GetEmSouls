@@ -1054,9 +1054,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1473661183}
     m_Modifications:
+    - target: {fileID: 1182474127093846, guid: 10b964f589d35eb4c8ed8441ddc13ceb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1297717960451648, guid: 10b964f589d35eb4c8ed8441ddc13ceb, type: 3}
       propertyPath: m_Name
       value: PlayerModel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1313235714016312, guid: 10b964f589d35eb4c8ed8441ddc13ceb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1315577498169108, guid: 10b964f589d35eb4c8ed8441ddc13ceb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1438339097499080, guid: 10b964f589d35eb4c8ed8441ddc13ceb, type: 3}
       propertyPath: m_IsActive
@@ -1605,8 +1617,13 @@ MonoBehaviour:
   b_Input: 0
   rb_Input: 0
   rt_Input: 0
+  d_Pad_Up: 0
+  d_Pad_Down: 0
+  d_Pad_Left: 0
+  d_Pad_Right: 0
   rollFlag: 0
   sprintFlag: 0
+  comboFlag: 0
   rollInputTimer: 0
 --- !u!114 &1473661188
 MonoBehaviour:
@@ -1624,6 +1641,7 @@ MonoBehaviour:
   isSprinting: 0
   isInAir: 0
   isGrounded: 0
+  canDoCombo: 0
 --- !u!114 &1473661189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1638,6 +1656,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightWeapon: {fileID: 11400000, guid: 0e99f32f133a4bb4d82a6bee63070377, type: 2}
   leftWeapon: {fileID: 11400000, guid: 0e99f32f133a4bb4d82a6bee63070377, type: 2}
+  unarmedWeapon: {fileID: 11400000, guid: 5ad62e4fd0b43fb429102c23aca58b59, type: 2}
+  weaponsInRightHandSlots:
+  - {fileID: 11400000, guid: 0e99f32f133a4bb4d82a6bee63070377, type: 2}
+  - {fileID: 11400000, guid: da7b1466182b3e04d9a4046a72fb2dd8, type: 2}
+  weaponsInLeftHandSlots:
+  - {fileID: 11400000, guid: 0e99f32f133a4bb4d82a6bee63070377, type: 2}
+  - {fileID: 11400000, guid: da7b1466182b3e04d9a4046a72fb2dd8, type: 2}
+  currentRightWeaponIndex: 0
+  currentLeftWeaponIndex: 0
 --- !u!114 &1473661190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1650,6 +1677,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c516ab505264f1e4793cf028059862f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lastAttack: 
 --- !u!114 &1473661191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1990,3 +2018,72 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1001 &6353419506746969951
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3802520229395313563, guid: f6fd2b9b284ab334693c3e2ca6aafdb4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3802520229395313563, guid: f6fd2b9b284ab334693c3e2ca6aafdb4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3802520229395313563, guid: f6fd2b9b284ab334693c3e2ca6aafdb4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3802520229395313563, guid: f6fd2b9b284ab334693c3e2ca6aafdb4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3802520229395313563, guid: f6fd2b9b284ab334693c3e2ca6aafdb4,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3802520229395313563, guid: f6fd2b9b284ab334693c3e2ca6aafdb4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3802520229395313563, guid: f6fd2b9b284ab334693c3e2ca6aafdb4,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3802520229395313563, guid: f6fd2b9b284ab334693c3e2ca6aafdb4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3802520229395313563, guid: f6fd2b9b284ab334693c3e2ca6aafdb4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3802520229395313563, guid: f6fd2b9b284ab334693c3e2ca6aafdb4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3802520229395313563, guid: f6fd2b9b284ab334693c3e2ca6aafdb4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5607629423376754612, guid: f6fd2b9b284ab334693c3e2ca6aafdb4,
+        type: 3}
+      propertyPath: m_Name
+      value: Dagger
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f6fd2b9b284ab334693c3e2ca6aafdb4, type: 3}
