@@ -15,9 +15,12 @@ namespace SE
 
         Animator animator;
 
+        QuickSlotsUI quickSlotUI;
+
         private void Awake()
         {
             animator = GetComponent<Animator>();
+            quickSlotUI = FindObjectOfType<QuickSlotsUI>();
 
             WeaponHolderSlot[] weaponHolderSlots = GetComponentsInChildren<WeaponHolderSlot>();
 
@@ -42,6 +45,7 @@ namespace SE
             {
                 leftHandSlot.LoadWeaponModel(weaponitem);
                 LoadLeftWeaponCollider();
+                quickSlotUI.UpdateWeaponQuickSlots(true, weaponitem);
 
                 if(weaponitem != null)
                 {
@@ -56,6 +60,7 @@ namespace SE
             {
                 rightHandSlot.LoadWeaponModel(weaponitem);
                 LoadRightWeaponCollider();
+                quickSlotUI.UpdateWeaponQuickSlots(false, weaponitem);
 
                 if (weaponitem != null)
                 {
