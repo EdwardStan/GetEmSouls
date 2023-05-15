@@ -261,8 +261,8 @@ namespace SE
             {
                 if (inputHandler.moveAmount > 0)
                 {
-                    moveDirection = cameraObject.forward * inputHandler.vertical * 10;
-                    moveDirection += cameraObject.right * inputHandler.horizontal * 10;
+                    moveDirection = cameraObject.forward * inputHandler.vertical;
+                    moveDirection += cameraObject.right * inputHandler.horizontal;
                     animatorHandler.PlayTargetAnimation("Jump", true);
                     moveDirection.y = 0;
 
