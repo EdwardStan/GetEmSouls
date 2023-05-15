@@ -21,6 +21,7 @@ namespace SE
         public bool d_Pad_Left;
         public bool d_Pad_Right;
         public bool a_Input;
+        public bool jump_Input;
 
         public bool rollFlag;
         public bool sprintFlag;
@@ -68,6 +69,7 @@ namespace SE
             HandleAttackInput(delta);
             HandleQuickSlotsInput();
             HandleInteractableButtonInput();
+            HandleJumpInput();
         }
 
         private void MoveInput(float delta)
@@ -158,6 +160,11 @@ namespace SE
         private void HandleInteractableButtonInput()
         {
             inputActions.PlayerActions.A.performed += i => a_Input = true;
+        }
+
+        private void HandleJumpInput()
+        {
+            inputActions.PlayerActions.Jump.performed += i => jump_Input = true;
         }
     }
 }

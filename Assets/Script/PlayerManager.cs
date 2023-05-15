@@ -47,6 +47,7 @@ namespace SE
         {
             isInteracting = anim.GetBool("isInteracting");
             canDoCombo = anim.GetBool("canDoCombo");
+            anim.SetBool("isInAir", isInAir);
 
             float delta = Time.deltaTime;
 
@@ -55,6 +56,7 @@ namespace SE
             playerLocomotion.HandleMovement(delta);
             playerLocomotion.HandleRollingAndSprint(delta);
             playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
+            playerLocomotion.HandleJumping();
 
             CheckForInteractable();
         }
@@ -81,7 +83,8 @@ namespace SE
             inputHandler.d_Pad_Up = false;
             inputHandler.d_Pad_Down = false;
             inputHandler.a_Input = false;
-
+            inputHandler.jump_Input= false;
+            
             if (isInAir)
             {
                 playerLocomotion.inAirTImer = playerLocomotion.inAirTImer + Time.deltaTime;
