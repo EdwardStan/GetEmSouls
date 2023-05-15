@@ -34,7 +34,7 @@ namespace SE
         {
             inputHandler = GetComponent<InputHandler>();
             anim = GetComponentInChildren<Animator>();
-            playerLocomotion= GetComponent<PlayerLocomotion>();
+            playerLocomotion = GetComponent<PlayerLocomotion>();
         }
 
         // Update is called once per frame
@@ -50,6 +50,8 @@ namespace SE
             playerLocomotion.HandleMovement(delta);
             playerLocomotion.HandleRollingAndSprint(delta);
             playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
+
+            CheckForInteractable();
         }
 
 
@@ -69,14 +71,37 @@ namespace SE
             inputHandler.sprintFlag = false;
             inputHandler.rb_Input = false;
             inputHandler.rt_Input = false;
-            inputHandler.d_Pad_Left= false;
-            inputHandler.d_Pad_Right= false;
-            inputHandler.d_Pad_Up= false;
-            inputHandler.d_Pad_Down= false;
+            inputHandler.d_Pad_Left = false;
+            inputHandler.d_Pad_Right = false;
+            inputHandler.d_Pad_Up = false;
+            inputHandler.d_Pad_Down = false;
+            inputHandler.a_Input = false;
 
             if (isInAir)
             {
                 playerLocomotion.inAirTImer = playerLocomotion.inAirTImer + Time.deltaTime;
+            }
+        }
+
+        public void CheckForInteractable()
+        {
+            RaycastHit hit;
+            if (Physics.SphereCast(transform.position, 0.3f, transform.forward, out hit, 1f, cameraHandler.ignoreLayers))
+            {
+                if (hit.collider.tag == "Interactable")
+                {
+                    Interactable interactableObject = hit.collider.GetComponent<Interactable>();
+
+                    if (interactableObject != null)
+                    {
+                        string interactableText = interactableObject.interactableText;
+
+                        if (inputHandler.a_Input)
+                        {
+                            hit.collider.GetComponent<Interactable>().Interact(this);
+                        }
+                    }
+                }
             }
         }
     }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace SE
@@ -19,6 +20,7 @@ namespace SE
         public bool d_Pad_Down;
         public bool d_Pad_Left;
         public bool d_Pad_Right;
+        public bool a_Input;
 
         public bool rollFlag;
         public bool sprintFlag;
@@ -65,6 +67,7 @@ namespace SE
             HandleRollingInput(delta);
             HandleAttackInput(delta);
             HandleQuickSlotsInput();
+            HandleInteractableButtonInput();
         }
 
         private void MoveInput(float delta)
@@ -150,6 +153,11 @@ namespace SE
                 Debug.Log("Change Left Weapon");
                 playerInventory.ChangeLeftWeapon();
             }
+        }
+
+        private void HandleInteractableButtonInput()
+        {
+            inputActions.PlayerActions.A.performed += i => a_Input = true;
         }
     }
 }
