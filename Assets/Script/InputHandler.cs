@@ -22,10 +22,12 @@ namespace SE
         public bool d_Pad_Right;
         public bool a_Input;
         public bool jump_Input;
+        public bool inventory_Input;
 
         public bool rollFlag;
         public bool sprintFlag;
         public bool comboFlag;
+        public bool inventoryFlag;
         public float rollInputTimer;
   
 
@@ -33,6 +35,7 @@ namespace SE
         PlayerAttacker playerAttacker;
         PlayerInventory playerInventory;
         PlayerManager playerManager;
+        UIManager uiManager;
 
 
         Vector2 movementInput;
@@ -43,6 +46,7 @@ namespace SE
             playerAttacker = GetComponent<PlayerAttacker>();
             playerInventory= GetComponent<PlayerInventory>();
             playerManager= GetComponent<PlayerManager>();
+            uiManager = FindObjectOfType<UIManager>();
         }
 
         public void OnEnable()
@@ -70,6 +74,7 @@ namespace SE
             HandleQuickSlotsInput();
             HandleInteractableButtonInput();
             HandleJumpInput();
+            HandleInventoryInput();
         }
 
         private void MoveInput(float delta)
@@ -165,6 +170,29 @@ namespace SE
         private void HandleJumpInput()
         {
             inputActions.PlayerActions.Jump.performed += i => jump_Input = true;
+        }
+
+        private void HandleInventoryInput()
+        {
+            inputActions.PlayerActions.Inventory.performed += i => inventory_Input = true;
+
+            if (inventory_Input)
+            {
+                inventoryFlag = !inventoryFlag;
+
+                if(inventoryFlag)
+                {
+                    uiManager.OpenSelectWindow();
+                    uiManager.UpdateUI();
+                    uiManager.hudWindow.SetActive(false);
+                }
+                else
+                {
+                    uiManager.CloseSelectWindow();
+                    uiManager.hudWindow.SetActive(true);
+                    uiManager.CloseAllInventoryWindows();
+                }
+            }
         }
     }
 }
