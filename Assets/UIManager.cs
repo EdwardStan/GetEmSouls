@@ -8,6 +8,7 @@ namespace SE
     public class UIManager : MonoBehaviour
     {
         public PlayerInventory playerInventory;
+        EquipementWindowUI equipementWIndowUI;
 
 
         [Header("UI Windows")]
@@ -23,10 +24,15 @@ namespace SE
 
         WeaponInventorySlot[] weaponInventorySlots;
 
+        private void Awake()
+        {
+            equipementWIndowUI = FindObjectOfType<EquipementWindowUI>();
+        }
 
         private void Start()
         {
             weaponInventorySlots = weaponInventorySlotParent.GetComponentsInChildren<WeaponInventorySlot>();
+            equipementWIndowUI.LoadWeaponsOnEquipementScreen(playerInventory);
         }
         public void UpdateUI()
         {
